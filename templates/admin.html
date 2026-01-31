@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HomeBites Admin Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="container">
+    <div class="brand">
+      <div class="logo">📊</div>
+      <h1>HomeBites Report</h1>
+      <p class="tag">Admin Dashboard</p>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:150px;">
+          <h2>Total Responses</h2>
+          <p style="font-size:28px;color:#00ff8c;font-weight:900;" id="total">0</p>
+        </div>
+        <div style="flex:1;min-width:150px;">
+          <h2>Avg Recommend Score</h2>
+          <p style="font-size:28px;color:#00ff8c;font-weight:900;" id="avg">0</p>
+        </div>
+      </div>
+
+      <hr style="border:1px solid rgba(255,255,255,0.08); margin:15px 0;">
+
+      <h2>Price Range Interest</h2>
+      <canvas id="priceChart"></canvas>
+
+      <br><br>
+
+      <h2>Food Ordering Frequency</h2>
+      <canvas id="freqChart"></canvas>
+
+      <br><br>
+
+      <a href="/export" style="text-decoration:none;">
+        <button id="nextBtn">⬇ Download CSV Report</button>
+      </a>
+
+      <br><br>
+
+      <a href="/" style="text-decoration:none;">
+        <button class="secondary">← Back to Survey</button>
+      </a>
+    </div>
+  </div>
+
+<script>
+async function loadStats(){
+  const res = await fetch("/stats");
+  const stats = await res.json();
+
+  document.getElementById("total").innerText = stats.total;
+  document.getElementById("avg").innerText = stats.avg_score + " / 10";
+
+  new Chart(document.getElementById("priceChart"), {
+    type: "pie",
+    data: {
+      labels: stats.price_data.map(x => x[0]),
+      datasets: [{
+        data: stats.price_data.map(x => x[1])
+      }]
+    }
+  });
+
+  new Chart(document.getElementById("freqChart"), {
+    type: "bar",
+    data: {
+      labels: stats.freq_data.map(x => x[0]),
+      datasets: [{
+        data: stats.freq_data.map(x => x[1])
+      }]
+    }
+  });
+}
+
+loadStats();
+</script>
+
+</body>
+</html>

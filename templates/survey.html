@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HomeBites Survey</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="container">
+    <div class="brand">
+      <div class="logo">🍱</div>
+      <h1>HomeBites Survey</h1>
+      <p class="tag">Homely feeling with every bite 💚</p>
+    </div>
+
+    <div class="card">
+      <div class="progress">
+        <div class="bar" id="bar"></div>
+      </div>
+
+      <form id="surveyForm">
+
+        <div class="step active">
+          <h2>What’s your name?</h2>
+          <input type="text" name="name" placeholder="Eg: Tanushri" required>
+        </div>
+
+        <div class="step">
+          <h2>Select your age group</h2>
+          <select name="age" required>
+            <option value="">Choose</option>
+            <option>Below 18</option>
+            <option>18–24</option>
+            <option>25–34</option>
+            <option>35–44</option>
+            <option>45+</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>You are a...</h2>
+          <select name="occupation" required>
+            <option value="">Choose</option>
+            <option>Student</option>
+            <option>Working Professional</option>
+            <option>Homemaker</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>How often do you order food online?</h2>
+          <select name="frequency" required>
+            <option value="">Choose</option>
+            <option>Daily</option>
+            <option>3–5 times/week</option>
+            <option>1–2 times/week</option>
+            <option>Rarely</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>Preferred meal from HomeBites?</h2>
+          <select name="preferred_meals" required>
+            <option value="">Choose</option>
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+            <option>Snacks</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>Biggest pain point with current food delivery?</h2>
+          <select name="pain_points" required>
+            <option value="">Choose</option>
+            <option>Too oily / unhealthy</option>
+            <option>No homely taste</option>
+            <option>Too expensive</option>
+            <option>Late delivery</option>
+            <option>Unhygienic packaging</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>Fair price for a proper home-style meal?</h2>
+          <select name="price_range" required>
+            <option value="">Choose</option>
+            <option>₹70 – ₹100</option>
+            <option>₹100 – ₹150</option>
+            <option>₹150 – ₹200</option>
+            <option>₹200+</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>Would you try HomeBites subscription plan?</h2>
+          <select name="subscription_interest" required>
+            <option value="">Choose</option>
+            <option>Yes, definitely</option>
+            <option>Maybe</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="step">
+          <h2>How likely are you to recommend HomeBites?</h2>
+          <input type="range" name="recommend_score" min="0" max="10" value="7"
+            oninput="document.getElementById('scoreVal').innerText=this.value">
+          <div class="rangeVal"><span id="scoreVal">7</span>/10</div>
+        </div>
+
+        <div class="step">
+          <h2>Any suggestions for HomeBites?</h2>
+          <textarea name="feedback" placeholder="Write your ideas..."></textarea>
+        </div>
+
+        <div class="btns">
+          <button type="button" id="prevBtn" class="secondary">Back</button>
+          <button type="button" id="nextBtn">Next</button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="footer">
+      <small>✨ Made with love for HomeBites | Thank you 💚</small>
+    </div>
+  </div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
