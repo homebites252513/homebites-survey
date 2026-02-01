@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // manual check for checkboxes (must pick at least 1 if present)
+    // checkbox groups must have at least one option selected
     const checkboxGroups = ["busy_meals", "reason", "delivery_problem", "home_food"];
     for (const name of checkboxGroups) {
       const boxes = current.querySelectorAll(`input[type="checkbox"][name="${name}"]`);
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append(ENTRY.price, data.price || "");
       formData.append(ENTRY.rating, data.rating || "");
 
-      // Checkbox fields: Google accepts repeated entry keys
+      // Checkbox fields (multi-select): send repeated key values
       busyMeals.forEach(v => formData.append(ENTRY.busy_meals, v));
       reasons.forEach(v => formData.append(ENTRY.reason, v));
       deliveryProblems.forEach(v => formData.append(ENTRY.delivery_problem, v));

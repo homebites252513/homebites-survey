@@ -79,6 +79,7 @@ body {
   display: none;
   animation: fade 0.25s ease;
 }
+
 .step.active {
   display: block;
 }
@@ -147,4 +148,50 @@ button#nextBtn {
   text-align: center;
   margin-top: 14px;
   color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ✅ Checklist styles (no overlap!) */
+.checklist{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:12px;
+}
+
+.checklist label{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+
+  padding:14px 14px;
+  border-radius:16px;
+
+  cursor:pointer;
+  user-select:none;
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+
+  transition:0.2s ease;
+
+  white-space:normal;
+}
+
+.checklist label:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,255,140,0.35);
+}
+
+.checklist input[type="checkbox"]{
+  width:20px;
+  height:20px;
+  margin-top:2px;
+  flex:0 0 auto;
+}
+
+.checklist label span{
+  display:block;
+  line-height:1.35;
+  font-size:14px;
 }
