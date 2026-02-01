@@ -27,7 +27,7 @@
         <!-- 1 -->
         <div class="step active">
           <h2>1. What should we call you? 😄</h2>
-          <input type="text" name="name" placeholder="Eg: Arjun" required>
+          <input type="text" name="name" placeholder="Eg: Arjun/ FoodieKing 😭🍱" required>
         </div>
 
         <!-- 2 -->
@@ -59,5 +59,95 @@
         <!-- 4 -->
         <div class="step">
           <h2>4. How do you usually solve meals on busy days? 😵 (Select all that apply)</h2>
-
           <div class="checklist">
+            <label><input type="checkbox" name="busy_meals" value="Food delivery apps"> Food delivery apps 📦</label>
+            <label><input type="checkbox" name="busy_meals" value="Mess / canteen"> Mess / canteen 🍽️</label>
+            <label><input type="checkbox" name="busy_meals" value="Instant food"> Instant food 🍜</label>
+            <label><input type="checkbox" name="busy_meals" value="I cook"> I cook 👩‍🍳</label>
+            <label><input type="checkbox" name="busy_meals" value="I skip meals"> I skip meals 😅</label>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="step">
+          <h2>5. Main reason you order food? 😋 (Select all that apply)</h2>
+          <div class="checklist">
+            <label><input type="checkbox" name="reason" value="No time"> No time ⏳</label>
+            <label><input type="checkbox" name="reason" value="No cooking skills"> No cooking skills 😭</label>
+            <label><input type="checkbox" name="reason" value="Too tired"> Too tired 😵</label>
+            <label><input type="checkbox" name="reason" value="Cravings"> Cravings 😋</label>
+            <label><input type="checkbox" name="reason" value="Laziness"> Laziness (honesty) 😌</label>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="step">
+          <h2>6. Biggest problem with current food delivery is… 😭 (Select all that apply)</h2>
+          <div class="checklist">
+            <label><input type="checkbox" name="delivery_problem" value="Too oily / unhealthy"> Too oily / unhealthy 🛢️</label>
+            <label><input type="checkbox" name="delivery_problem" value="Taste feels fake"> Taste feels fake 😐</label>
+            <label><input type="checkbox" name="delivery_problem" value="Expensive"> Expensive 💸</label>
+            <label><input type="checkbox" name="delivery_problem" value="Delivery is late"> Delivery is late 🕐</label>
+            <label><input type="checkbox" name="delivery_problem" value="Hygiene issues"> Hygiene issues 🤢</label>
+            <label><input type="checkbox" name="delivery_problem" value="Portion too small"> Portion too small 😭</label>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="step">
+          <h2>7. What “home food” means to you? 🫶 (Select all that apply)</h2>
+          <div class="checklist">
+            <label><input type="checkbox" name="home_food" value="Less oil + healthy"> Less oil + healthy 💚</label>
+            <label><input type="checkbox" name="home_food" value="Comfort + taste"> Comfort + taste 😋</label>
+            <label><input type="checkbox" name="home_food" value="Mom-type food"> Mom-type food 🫶</label>
+            <label><input type="checkbox" name="home_food" value="Proper meal"> Proper meal (rice/chapati/sabzi/dal) 🍛</label>
+            <label><input type="checkbox" name="home_food" value="Anything that doesn’t make me sick"> Anything that doesn’t make me sick 🤝</label>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="step">
+          <h2>8. If HomeBites existed today, what would you order first? 🍛</h2>
+          <input type="text" name="first_order" placeholder="Eg: Rajma Chawal 😭💚" required>
+        </div>
+
+        <!-- 9 -->
+        <div class="step">
+          <h2>9. What price feels fair for a full home-style meal? 💸</h2>
+          <select name="price" required>
+            <option value="">Choose</option>
+            <option value="₹70–₹100">₹70–₹100 ✅</option>
+            <option value="₹100–₹150">₹100–₹150 ✅</option>
+            <option value="₹150–₹200">₹150–₹200</option>
+            <option value="₹200+">₹200+ (if it’s premium)</option>
+          </select>
+        </div>
+
+        <!-- 10 -->
+        <div class="step">
+          <h2>10. Rate this idea: HomeBites 💚</h2>
+          <p style="margin-bottom:10px;color:rgba(255,255,255,0.7);font-size:13px;">
+            “Homely feeling with every bite”
+          </p>
+          <input type="range" name="rating" min="0" max="10" value="8"
+                 oninput="document.getElementById('scoreVal').innerText=this.value">
+          <div class="rangeVal"><span id="scoreVal">8</span>/10</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btns">
+          <button type="button" id="prevBtn" class="secondary">Back</button>
+          <button type="button" id="nextBtn">Next</button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="footer">
+      <small>✨ Built for HomeBites | Thank you 💚</small>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
