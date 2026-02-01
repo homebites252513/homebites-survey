@@ -1,3 +1,4 @@
+// render-force-update-1
 document.addEventListener("DOMContentLoaded", () => {
   let currentStep = 0;
 
