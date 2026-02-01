@@ -24,114 +24,40 @@
 
       <form id="surveyForm">
 
+        <!-- 1 -->
         <div class="step active">
-          <h2>What’s your name?</h2>
-          <input type="text" name="name" placeholder="Eg: Tanushri" required>
+          <h2>1. What should we call you? 😄</h2>
+          <input type="text" name="name" placeholder="Eg: Tanu / FoodieKing 😭🍱" required>
         </div>
 
+        <!-- 2 -->
         <div class="step">
-          <h2>Select your age group</h2>
+          <h2>2. Which age group are you from? 👀</h2>
           <select name="age" required>
             <option value="">Choose</option>
-            <option>Below 18</option>
-            <option>18–24</option>
-            <option>25–34</option>
-            <option>35–44</option>
-            <option>45+</option>
+            <option value="Below 18">Below 18 🍭</option>
+            <option value="18–24">18–24 🎓</option>
+            <option value="25–34">25–34 💼</option>
+            <option value="35–44">35–44 👨‍👩‍👧</option>
+            <option value="45+">45+ 👑</option>
           </select>
         </div>
 
+        <!-- 3 -->
         <div class="step">
-          <h2>You are a...</h2>
-          <select name="occupation" required>
+          <h2>3. Your life currently is…</h2>
+          <select name="life" required>
             <option value="">Choose</option>
-            <option>Student</option>
-            <option>Working Professional</option>
-            <option>Homemaker</option>
-            <option>Other</option>
+            <option value="Student mode">Student mode 📚</option>
+            <option value="Working mode">Working mode 💻</option>
+            <option value="Home manager mode">Home manager mode 🏠</option>
+            <option value="Retired + relaxed mode">Retired + relaxed mode 😎</option>
+            <option value="Chaos mode">Chaos mode (everything at once) 🔥</option>
           </select>
         </div>
 
+        <!-- 4 -->
         <div class="step">
-          <h2>How often do you order food online?</h2>
-          <select name="frequency" required>
-            <option value="">Choose</option>
-            <option>Daily</option>
-            <option>3–5 times/week</option>
-            <option>1–2 times/week</option>
-            <option>Rarely</option>
-          </select>
-        </div>
+          <h2>4. How do you usually solve meals on busy days? 😵 (Select all that apply)</h2>
 
-        <div class="step">
-          <h2>Preferred meal from HomeBites?</h2>
-          <select name="preferred_meals" required>
-            <option value="">Choose</option>
-            <option>Breakfast</option>
-            <option>Lunch</option>
-            <option>Dinner</option>
-            <option>Snacks</option>
-          </select>
-        </div>
-
-        <div class="step">
-          <h2>Biggest pain point with current food delivery?</h2>
-          <select name="pain_points" required>
-            <option value="">Choose</option>
-            <option>Too oily / unhealthy</option>
-            <option>No homely taste</option>
-            <option>Too expensive</option>
-            <option>Late delivery</option>
-            <option>Unhygienic packaging</option>
-          </select>
-        </div>
-
-        <div class="step">
-          <h2>Fair price for a proper home-style meal?</h2>
-          <select name="price_range" required>
-            <option value="">Choose</option>
-            <option>₹70 – ₹100</option>
-            <option>₹100 – ₹150</option>
-            <option>₹150 – ₹200</option>
-            <option>₹200+</option>
-          </select>
-        </div>
-
-        <div class="step">
-          <h2>Would you try HomeBites subscription plan?</h2>
-          <select name="subscription_interest" required>
-            <option value="">Choose</option>
-            <option>Yes, definitely</option>
-            <option>Maybe</option>
-            <option>No</option>
-          </select>
-        </div>
-
-        <div class="step">
-          <h2>How likely are you to recommend HomeBites?</h2>
-          <input type="range" name="recommend_score" min="0" max="10" value="7"
-            oninput="document.getElementById('scoreVal').innerText=this.value">
-          <div class="rangeVal"><span id="scoreVal">7</span>/10</div>
-        </div>
-
-        <div class="step">
-          <h2>Any suggestions for HomeBites?</h2>
-          <textarea name="feedback" placeholder="Write your ideas..."></textarea>
-        </div>
-
-        <div class="btns">
-          <button type="button" id="prevBtn" class="secondary">Back</button>
-          <button type="button" id="nextBtn">Next</button>
-        </div>
-
-      </form>
-    </div>
-
-    <div class="footer">
-      <small>✨ Made with love for HomeBites | Thank you 💚</small>
-    </div>
-  </div>
-
-<script src="/static/script.js"></script>
-</body>
-</html>
+          <div class="checklist">

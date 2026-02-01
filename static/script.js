@@ -1,4 +1,3 @@
-// render-force-update-1
 document.addEventListener("DOMContentLoaded", () => {
   let currentStep = 0;
 
@@ -8,32 +7,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevBtn = document.getElementById("prevBtn");
   const form = document.getElementById("surveyForm");
 
-  console.log("✅ HomeBites survey script loaded");
-  console.log("steps:", steps.length);
-
   // ✅ Google Form backend URL
   const GOOGLE_FORM_ACTION_URL =
     "https://docs.google.com/forms/d/e/1FAIpQLSfmjdUe8BvpP1nnZOARAPcK7RJbSj0f0KXlUCHQe7mXhdz-qw/formResponse";
 
-  // ✅ Entry mapping
+  // ✅ Entry mapping (UPDATED)
   const ENTRY = {
     name: "entry.167936367",
     age: "entry.1814503071",
-    occupation: "entry.1512901872",
-    frequency: "entry.1106749226",
-    preferred_meals: "entry.1881675444",
-    pain_points: "entry.1903300658",
-    price_range: "entry.1493350363",
-    subscription_interest: "entry.274706038",
-    recommend_score: "entry.1862869146",
-    feedback: "entry.983563478"
+    life: "entry.1512901872",
+    busy_meals: "entry.1106749226",
+    reason: "entry.1881675444",
+    delivery_problem: "entry.1903300658",
+    home_food: "entry.1493350363",
+    first_order: "entry.274706038",
+    price: "entry.1862869146",
+    rating: "entry.983563478"
   };
-
-  if (!nextBtn || !prevBtn || !form || steps.length === 0) {
-    console.error("❌ Survey elements not found. Check IDs/classes in survey.html.");
-    console.log({ nextBtn, prevBtn, form, steps });
-    return;
-  }
 
   function showStep(index) {
     steps.forEach((s, i) => s.classList.toggle("active", i === index));
@@ -42,33 +32,72 @@ document.addEventListener("DOMContentLoaded", () => {
     bar.style.width = ((index + 1) / steps.length) * 100 + "%";
   }
 
-  showStep(currentStep);
+  function validateStep() {
+    const current = steps[currentStep];
 
-  nextBtn.addEventListener("click", async () => {
-    // validate required fields in current step
-    const inputs = steps[currentStep].querySelectorAll("input,select,textarea");
-    for (const inp of inputs) {
-      if (inp.hasAttribute("required") && !inp.value) {
-        inp.focus();
-        return;
+    // required check for inputs/selects/textarea
+    const requiredFields = current.querySelectorAll("[required]");
+    for (const el of requiredFields) {
+      if (!el.value) {
+        el.focus();
+        return false;
       }
     }
 
-    // submit if last step
+    // manual check for checkboxes (must pick at least 1 if present)
+    const checkboxGroups = ["busy_meals", "reason", "delivery_problem", "home_food"];
+    for (const name of checkboxGroups) {
+      const boxes = current.querySelectorAll(`input[type="checkbox"][name="${name}"]`);
+      if (boxes.length > 0) {
+        const anyChecked = Array.from(boxes).some(b => b.checked);
+        if (!anyChecked) {
+          alert("Please select at least one option 😄");
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+
+  function getCheckedValues(fieldName) {
+    return Array.from(document.querySelectorAll(`input[name="${fieldName}"]:checked`))
+      .map(x => x.value);
+  }
+
+  showStep(currentStep);
+
+  nextBtn.addEventListener("click", async () => {
+    if (!validateStep()) return;
+
+    // submit on last step
     if (currentStep === steps.length - 1) {
+      nextBtn.disabled = true;
+      nextBtn.innerText = "Submitting...";
+
       const data = Object.fromEntries(new FormData(form).entries());
 
+      // collect checkbox values
+      const busyMeals = getCheckedValues("busy_meals");
+      const reasons = getCheckedValues("reason");
+      const deliveryProblems = getCheckedValues("delivery_problem");
+      const homeFood = getCheckedValues("home_food");
+
       const formData = new FormData();
+
+      // Normal fields
       formData.append(ENTRY.name, data.name || "");
       formData.append(ENTRY.age, data.age || "");
-      formData.append(ENTRY.occupation, data.occupation || "");
-      formData.append(ENTRY.frequency, data.frequency || "");
-      formData.append(ENTRY.preferred_meals, data.preferred_meals || "");
-      formData.append(ENTRY.pain_points, data.pain_points || "");
-      formData.append(ENTRY.price_range, data.price_range || "");
-      formData.append(ENTRY.subscription_interest, data.subscription_interest || "");
-      formData.append(ENTRY.recommend_score, data.recommend_score || "");
-      formData.append(ENTRY.feedback, data.feedback || "");
+      formData.append(ENTRY.life, data.life || "");
+      formData.append(ENTRY.first_order, data.first_order || "");
+      formData.append(ENTRY.price, data.price || "");
+      formData.append(ENTRY.rating, data.rating || "");
+
+      // Checkbox fields: Google accepts repeated entry keys
+      busyMeals.forEach(v => formData.append(ENTRY.busy_meals, v));
+      reasons.forEach(v => formData.append(ENTRY.reason, v));
+      deliveryProblems.forEach(v => formData.append(ENTRY.delivery_problem, v));
+      homeFood.forEach(v => formData.append(ENTRY.home_food, v));
 
       try {
         await fetch(GOOGLE_FORM_ACTION_URL, {
@@ -81,26 +110,31 @@ document.addEventListener("DOMContentLoaded", () => {
           <div style="text-align:center;padding:24px;">
             <div style="font-size:52px;">✅</div>
             <h2 style="margin-top:10px;">Thank you!</h2>
-            <p style="margin-top:8px;color:#a7ffcf;">
-              You just helped HomeBites grow 💚🍱
-            </p>
+
             <div style="margin-top:14px;padding:12px;border-radius:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);">
-              <p style="font-weight:800;color:#00ff8c;">🏅 Badge Unlocked:</p>
+              <p style="font-weight:800;color:#00ff8c;">
+                Ayy! You just helped HomeBites become real 💚🍱
+              </p>
               <p style="margin-top:6px;color:rgba(255,255,255,0.75);">
-                Official HomeBites Supporter 😌
+                We owe you one bite 😄
               </p>
             </div>
+
+            <p style="margin-top:12px;color:rgba(255,255,255,0.65);font-size:13px;">
+              You can close this page now 😌
+            </p>
           </div>
         `;
       } catch (e) {
         alert("Submission failed. Please try again.");
         console.error(e);
+        nextBtn.disabled = false;
+        nextBtn.innerText = "Submit";
       }
 
       return;
     }
 
-    // next step
     currentStep++;
     showStep(currentStep);
   });
